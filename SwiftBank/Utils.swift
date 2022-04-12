@@ -8,7 +8,7 @@
 import Foundation
 
 class Utils {
-    static func readInput(prompt: String = "> ") -> String {
+    static func readInput(prompt: String = "> ", includeEmpty: Bool = false) -> String {
         print(prompt, terminator: "")
         
         repeat {
@@ -16,7 +16,11 @@ class Utils {
                 // Swift 2.2: guard let [Action], [Condition] else [Else-Action]
                 //  However, in Swift 3 where has been replaced with `,`. where is removed.
                 let response_str = readLine(strippingNewline: true), !response_str.isEmpty else {
-                continue
+                if includeEmpty {
+                    return ""
+                } else {
+                    continue
+                }
             }
             return response_str
         } while true
@@ -25,11 +29,9 @@ class Utils {
     static func cleanScreen() {
         print("")
         print("")
-        print("")
-        print("")
     }
     
     static func pause() {
-        readInput()
+        readInput(prompt: "press Enter to the next", includeEmpty: true)
     }
 }

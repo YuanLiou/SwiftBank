@@ -64,7 +64,6 @@ func login() {
     
     print("Access Granted")
     Utils.pause()
-    
     enterUserMenu()
 }
 
@@ -155,10 +154,13 @@ func signUp() {
     let password = Utils.readInput(prompt: "Password: ")
     let name = Utils.readInput(prompt: "Name: ")
     
-    users.append(User(username: username, password: password, name: name)!)
+    let newUser = User(username: username, password: password, name: name)!
+    users.append(newUser)
+    currentUser = newUser
     print("Signup Successful")
-//    Utils.pause()
+    Utils.pause()
     enterUserMenu()
 }
 
+// Entry Point
 main()
